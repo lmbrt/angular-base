@@ -1,0 +1,41 @@
+<div class="row">
+	 <div class="span10">
+	   <h2>Test Module</h2>
+	     <div>Root view: {{view.root}}</div>
+	     <a href="javascript:" ng-click="switchView('module1','q',view.root,'sort','n1');">module 1</a>
+	     <a href="#/Test/?v=module1.subview1">module 1 subview 1</a>
+	     <a href="#/Test/?v=module1.subview1.view1">module 1 subview 1 view 1</a><br>
+	     <a href="#/Test/?v=module2">module 2</a><br>
+	     <a href="#/Test/?v=module3">module 3</a><br>
+	     <a href="#/Test/">None</a><br>
+	     
+	     <div ng-show="view.module1">Hello module 1
+	       
+	     	<div ng-show="view.module1.subview1">  
+		  subview from module 1
+		  	     	<div ng-show="view.module1.subview1.view1">  
+		  			view from module 1 subview 1
+		 		</div>
+		 </div>
+	     </div>
+	     <div ng-show="view.module2">Hello module 2</div>
+	     <div ng-show="view.module3">Hello module 3</div>
+	     <div ng-show="view.default">Welcome...</div>
+	 </div>
+</div>
+<div class="row">
+	<div class="span10">	 
+	 	<h3>Test Module Switch 2</h3> 
+		
+		 <div ng-switch on="view.root" >
+		 	<div ng-switch-when="module1">Switch: module1
+			  	<div data-ng-include="'views/order.html'"></div>
+		  	     	<div ng-show="view.module1.subview1.view1" >  
+				  Inside ngshow inside switch
+				</div>
+			</div>
+		 	<span ng-switch-when="module2">Switch: module 2</span>
+		 	<span ng-switch-default>default</span>
+		 </div>
+	</div>
+</div>

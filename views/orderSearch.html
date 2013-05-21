@@ -1,0 +1,188 @@
+<div class="row">
+	 <div class="span12">
+	   <div ng-class="{true: 'collapsed', false: ''}[orders.length > 0]">
+	     <h2>Order Search</h2>
+	     <div class="accordian">
+		  <form class="form-inline" name="frmOrderSearch" ng-submit="search()">
+			  <div class="accordion-group">
+				  <div class="accordion-heading">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">General</a>
+				  </div>
+				  
+				    <div class="controls controls-row accordion-body collapse in"  id="collapseOne">
+					    <input type="text" class="input-small" placeholder="Name" ng-model="params.Name" />
+					    <div class="input-prepend">
+                       				<span class="add-on"><i class="icon-envelope"></i></span>
+					    		<input type="email" class="input-medium" placeholder="Email" ng-model="params.Email" name="Email" />
+					    </div>
+					    <input type="text" class="input-small" placeholder="Phone No" ng-model="params.PhoneNo" />
+					   <span ng-show="false">
+					     <select ui-select2 ng-model="params.StateCd" data-placeholder="State" style="width:150px">
+						    <option></option>
+						    <option ng-repeat="state in statelist" value="{{state.StateCd}}">{{state.StateName}}</option>
+					    </select>
+					    </span>
+					    <select class="span2" data-chosen="{allowSingleDeselect: true}" allow-single-deselect="true" ng-model="params.StateCd">
+						<option></option>
+						<option ng-repeat="state in statelist" value="{{state.StateCd}}">{{state.StateName}}</option>
+					    </select>
+					    <input type="number" class="input-mini" placeholder="Zip" ng-model="params.PostalCd" name="Zip" />
+					    <input type="number" class="input-small" placeholder="Account ID" ng-model="params.AccountID" />
+					    <select data-ui-select2="{width:'150px'}" ng-model="params.RepUserID" data-placeholder="Account Rep" style="width:150px">
+						    
+                       				<span class="add-on"><i class="icon-envelope"></i></span>
+						    <option></option>
+						    <option ng-repeat="rep in replist" value="{{rep.SysUserID}}">{{rep.FullName}}</option>
+					    </select>
+				    </div>
+				  
+			  </div>
+	      
+			  <div class="accordion-group">
+				  <div class="accordion-heading">
+					  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#productPanel">Product Info</a>
+				  </div>		
+				  <fieldset name="productInfo" >		    
+					  <div class="controls controls-row accordion-body collapse out"  id="productPanel">
+						  <input type="number" class="input-small" placeholder="Product ID" ng-model="params.ProductID" />
+						  <input type="number" class="input-small" placeholder="Variant ID" ng-model="params.ProductVariantID" />
+						  <input type="number" class="input-small" placeholder="UOM ID" ng-model="params.ProductUnitMeasureID" />
+						  <select ui-select2 ng-model="params.ProductTypeID" data-placeholder="Product Type" style="width:180px">
+							  <option></option>
+							  <option ng-repeat="ptype in producttypelist" value="{{ptype.ProductTypeID}}">{{ptype.ProductTypeName}}</option>
+						  </select>
+						    <select ui-select2 ng-model="params.SupplerID" data-placeholder="Supplier" style="width:180px">
+							    <option></option>
+							    <option ng-repeat="supplier in supplierlist" value="{{supplier.SupplierID}}">{{supplier.SupplierName}}</option>
+						    </select>		    
+						    <input type="text" class="input-small" placeholder="Holding Inventory" ng-model="params.HoldingInventory" />
+					    </div>
+				    </fieldset>	     
+			    </div>
+		 
+			    <div class="accordion-group">
+				    <div class="accordion-heading">
+					    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#orderPanel">Order Info</a>
+				    </div>				
+				  <fieldset>
+					  <div class="controls controls-row accordion-body collapse out"  id="orderPanel">
+					      <select ui-select2 ng-model="params.OrderHeaderStatusID" data-placeholder="Order Status" style="width:150px">
+						      <option></option>
+						      <option ng-repeat="os in orderstatuslist" value="{{os.OrderHeaderStatusID}}">{{os.OrderHeaderStatusDesc}}</option>
+					      </select>		    
+					      <select ui-select2 ng-model="params.PaymentStatusID" data-placeholder="Payment Status" style="width:180px">
+						      <option></option>
+						      <option ng-repeat="ps in paymentstatuslist" value="{{ps.PaymentStatusID}}">{{ps.PaymentStatusDesc}}</option>
+					      </select>			    
+					      <select ui-select2 ng-model="params.ShipMethodID" data-placeholder="Ship Method" style="width:180px">
+						      <option></option>
+						      <option ng-repeat="sm in shipmethodlist" value="{{sm.ShipMethodID}}">{{sm.ShipMethodDesc}}</option>
+					      </select>		    
+					      <select ui-select2 ng-model="params.WebsiteID" data-placeholder="Website" style="width:180px">
+						      <option></option>
+						      <option ng-repeat="ws in websitelist" value="{{ws.WebsiteID}}">{{ws.WebsiteName}}</option>
+					      </select>			    
+					      <select ui-select2 ng-model="params.AdminID" data-placeholder="Create User" style="width:180px">
+						      <option></option>
+						      <option ng-repeat="rep in replist" value="{{rep.SysUserID}}">{{rep.FullName}}</option>
+					      </select>		    
+					      <input type="text" class="input-small" placeholder="Customer PO" ng-model="params.PONumber" />
+					  </div>
+				  </fieldset>		     
+			    </div>
+			    
+			    <div class="accordion-group">
+				    <div class="accordion-heading">
+					    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#otherPanel">Other Info</a>
+				    </div>				
+				  <fieldset>
+					  <div class="controls controls-row accordion-body collapse out"  id="otherPanel">
+	                        		<div class="input-prepend">
+                       				<span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="reservation" id="reservation" value="03/18/2013 - 03/23/2013" />
+                     			</div>
+					      <select ui-select2 ng-model="params.PaymentStatusID" data-placeholder="Payment Status" style="width:200px">
+						      <option></option>
+						      <option ng-repeat="ps in paymentstatuslist" value="{{ps.PaymentStatusID}}">{{ps.PaymentStatusDesc}}</option>
+					      </select>			    
+					      <select ui-select2 ng-model="params.ShipMethodID" data-placeholder="Ship Method" style="width:200px">
+						      <option></option>
+						      <option ng-repeat="sm in shipmethodlist" value="{{sm.ShipMethodID}}">{{sm.ShipMethodDesc}}</option>
+					      </select>		    
+					      <select ui-select2 ng-model="params.WebsiteID" data-placeholder="Website" style="width:200px">
+						      <option></option>
+						      <option ng-repeat="ws in websitelist" value="{{ws.WebsiteID}}">{{ws.WebsiteName}}</option>
+					      </select>			    
+					      <select ui-select2 ng-model="params.AdminID" data-placeholder="Create User" style="width:200px">
+						      <option></option>
+						      <option ng-repeat="rep in replist" value="{{rep.SysUserID}}">{{rep.FullName}}</option>
+					      </select>		    
+					      <input type="text" class="input-small" placeholder="Customer PO" ng-model="params.PONumber" />
+					  </div>
+				  </fieldset>		     
+			    </div>			    
+			    <div class="text-right top-buffer well">
+				    <button class="btn btn-primary" ng-disabled="itemForm.$invalid" ng-click="switchView('search', 'Q', params, 'S', null)" >Search Orders</button>	
+			    </div>
+		    </form>
+		 </div>
+		</div>
+		<div ng-show="orders.length > 0">
+		    <h2 id="OrderResultHeader">Search Results</h2>
+	   <table class="table table-striped table-bordered table-hover table-condensed">
+	     <thead>
+	     	<tr>
+		  <th>Date</th>
+		  <th>Order #</th>
+		  <th>Acct #</th>
+		  <th>Name</th>
+		  <th>User</th>
+		  <th>Website</th>
+		  <th>Status</th>
+		  <th>Total Amt</th>
+		  <th>&nbsp;</th>
+		</tr>
+	     </thead>
+ <tfoot>
+                    <td colspan="10">
+			       <div class="pagination pull-left">
+				 Items per page <select data-ng-model="params.pageSize">
+				 	<option value="10">10</option>
+				 	<option value="20">20</option>
+				 	<option value="30">30</option>
+				 	<option value="40">40</option>
+				 	<option value="50">50</option>
+				 	<option value="100">100</option>
+				 </select>
+			       </div>
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-show="params.pageStart > 0">
+                                    <a href ng-click="prevPage()">&#171; Prev</a>
+                                </li>
+                                <li>
+					 <a>Showing items {{ params.pageStart || 1}} - {{ add(params.pageStart,params.pageSize) }}</a>
+                                </li>
+                                <li>
+                                    <a href ng-click="nextPage()">Next &#187;</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>	     
+	     <tbody>
+	     	<tr ng-repeat='order in orders'  ng-dblclick="switchView('edit.summary','id',order.OrderHeaderID)">
+		 <td>{{ order.CreateDttm | dateFormat }}</td>
+		 <td>{{ order.OrderHeaderID }}</td>
+		 <td>{{ order.AccountID }}</td>
+		 <td>{{ order.BillToName }}</td>
+		 <td>{{ order.CreateUserIDDesc }}</td>
+		 <td>{{ order.WebsiteIDDesc }}</td>
+		 <td>{{ order.OrderHeaderStatusIDDesc }}</td>
+		 <td>{{ order.TotalAmt | currency }}</td>
+		 <td><button class="btn" data-ng-click="switchView('edit.summary','id',order.OrderHeaderID)">Edit</button></td>
+	       </tr>
+	     </tbody>
+	   </table>
+		    </div>
+		    </div>
+		    </div>

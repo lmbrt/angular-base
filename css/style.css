@@ -1,0 +1,81 @@
+    /*style.css*/
+    .grid {
+    border: 1px solid rgb(212,212,212);
+    width: 400px;
+    height: 300px
+    }
+	   
+.topnav { margin-bottom: 0; }
+.topnav a em { padding-right: 3px; }
+.topnav .navbar-inner {
+	 -webkit-border-bottom-right-radius: 0px;
+	 -webkit-border-bottom-left-radius: 0px;
+	 -moz-border-radius-bottomright: 0px;
+	 -moz-border-radius-bottomleft: 0px;
+	 border-bottom-right-radius: 0px;
+	 border-bottom-left-radius: 0px; 
+}
+.secondnav li { line-height: 10px; }
+.secondnav .navbar-inner { 
+	 min-height: 10px; 
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	}
+.accordion-toggle.collapsed:before {
+	content: "+ "; 
+}
+
+.accordion-toggle:before {
+	content: "- "; 
+}
+
+.top-buffer { margin-top:20px; }
+
+#loadingBackground
+{
+	 background: rgba(238, 238, 238, 0.34);
+	 height: 100%;
+	 width: 100%;
+	 position: fixed;
+	 left: 0;
+	 top: 0;
+}
+
+#loadingContent    
+	{
+ width:200px;
+ height:200px;
+ margin:0 auto;
+	text-align: center;
+ position:fixed;
+ left:50%;
+ top:50%;
+ margin-left:-100px;
+ margin-top:-100px;
+	}
+	
+/* Chrome fix */
+.accordion-body.in { overflow:visible; }
+
+.orderSummaryHeader { height: 200px; overflow:hidden; overflow-y: auto;}
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+ 
+table.table thead .sorting { background: url('sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('sort_desc.png') no-repeat center right; }
+ 
+table.table thead .sorting_asc_disabled { background: url('sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('sort_desc_disabled.png') no-repeat center right; }
+

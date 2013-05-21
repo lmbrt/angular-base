@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cleoMgr">
+    <meta charset="utf-8">
+    <title>CLEO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/ng-grid.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="css/vendor/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="css/chosen-spinner.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/vendor/head.min.js"></script>
+    
+    <script type="text/javascript">
+		   head.js("js/vendor/Base.js", 
+			   "js/vendor/lzw_encoder.js", 
+			   "js/vendor/augment.min.js", 
+			   "js/vendor/base64.js", 
+			   "js/vendor/setImmediate.js", 
+			   "js/vendor/contains.min.js",
+			   "js/vendor/observer-shim.js",
+			   "js/vendor/Function.create.js",
+			   "js/vendor/lodash.compat.min.js",
+			   "js/vendor/sha256.js",
+			   "js/vendor/spin.min.js",
+			   //"js/vendor/require.js",
+			   "js/vendor/jquery-1.9.1.min.js",
+			   "js/vendor/jquery.dataTables.min.js",
+			   "js/vendor/chosen.jquery.min.js",
+			   "js/vendor/angular.min.js",
+			   "js/vendor/angular-resource.min.js",
+			   "js/vendor/angular-ui-utils.min.js",
+			   "js/vendor/angular-webstorage.js",
+			   "js/vendor/ng-grid-2.0.4.min.js",
+			   "js/vendor/bootstrap.min.js",
+			   "js/vendor/select2.js",
+			   "js/vendor/angular.chosen.js",
+			   "js/vendor/angular-select2.js",
+			   "js/vendor/promise-tracker.js",
+			   "js/vendor/angular-datatables.js",
+			   "js/services/http-auth-interceptor.js",
+			   "js/BaseCtrl.js",
+			   "js/modules/AccountModule.js",
+			   "js/modules/OrderModule.js",
+			   "js/modules/CatalogModule.js",
+			   "js/modules/TestModule.js",
+			   "js/controllers/OrderController.js",
+			   "js/app.js"
+			   );
+    </script>
+        
+<!--[if lte IE 8]>
+    <script>
+    // The ieshiv takes care of our ui.directives, bootstrap module directives and 
+    // AngularJS's ng-view, ng-include, ng-pluralize and ng-switch directives.
+    // However, IF you have custom directives (yours or someone else's) then
+    // enumerate the list of tags in window.myCustomTags
+ 
+    window.myCustomTags = [ 'yourDirective', 'somebodyElsesDirective' ]; // optional
+    </script>
+    <script src="js/vendor/angular-ui-ieshiv.min.js"></script>
+<![endif]-->    
+
+    </head>
+    <body>
+    
+    
+    <div class="container">
+        <div class="row navbar topnav">
+            <div class="navbar-inner">
+                <ul class="nav">
+                        <li class="dropdown">
+                            <a id="drop1" class="dropdown-toggle brand" data-toggle="dropdown" href="#menu">CLEO<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                <li><a>System</a></li>
+                                <li><a>User Roles</a></li>
+                                <li><a>Users</a></li>
+                            </ul>
+                         </li>
+                        <li ng-class="{active: location.url().indexOf('/Orders') == 0}"><a href="#/Orders/">Order</a></li>
+                        <li ng-class="{active: location.url().indexOf('/Accounts') == 0}"><a href="#/Accounts/">Account</a></li>
+                        <li ng-class="{active: location.url().indexOf('/Catalog') == 0}"><a href="#/Catalog/">Catalog</a></li>
+                        <li><a href="#/Catalog/">Website</a></li>
+                        <li><a href="#/Catalog/">Warehouse</a></li>
+                        <li><a href="#/Catalog/">Purchasing</a></li>
+                        
+                </ul>
+                <ul class="nav pull-right">
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" id="navbar.recent" href="#null"><em class="icon-time"></em>Recent<strong class="caret"></strong></a>
+                             <ul class="dropdown-menu" role="menu" aria-labelledby="navbar.recent">
+                                <li><a>Not yet implemented</a></li>
+                            </ul>    
+                    </li>
+                    
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" id="navbar.settings" href="#null"><em class="icon-user"></em>{{ username || 'User'}}<strong class="caret"></strong></a>
+                             <ul class="dropdown-menu" role="menu" aria-labelledby="navbar.settings">
+                                <li><a>Dashboard</a></li>
+                                <li><a>Settings</a></li>
+                                <li><a>Password</a></li>
+                                <li><a>Saved Carts</a></li>
+                            </ul>    
+                    </li>
+                </ul>
+            </div>
+        </div>        
+        <div class="row navbar navbar-inverse secondnav">
+            <div class="navbar-inner">
+                <div data-left-module="main" >
+                    <ul class="nav" data-url-match="#/Orders/" data-left-Menu="#/Orders/">
+                            <li><a href="#/Orders/Cart.New">New Cart</a></li>
+                            <li><a href="#/Orders/Cart.Search">Cart Search</a></li>
+                            <li><a href="#/Orders/?v=search">Order Search</a></li>
+                            <li><a href="#/Orders/?v=edit">Edit Order</a></li>
+                            <li><a href="#/Orders/Account">Account Search</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" id="navbar.order.reporting" href="#null">Reporting<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu" data-role="menu" aria-labelledby="navbar.order.reporting">
+                                    <li><a href="#/Orders/Dashboard">Sales Dashboard</a></li>
+                                    <li><a href="#/Products/Dashboard">Account Performance</a></li>
+                                    <li><a href="#/Warehouse/Dashboard">Rep Performance</a></li>
+                                    <li><a href="#/Website/Dashboard">Activity</a></li>
+                                </ul>    
+                            </li>
+                    </ul>
+                    <ul class="nav" data-url-match="#/Accounts/" data-left-Menu="#/Accounts/">
+                            <li><a href="#/Accounts/?v=new">New Account</a></li>
+                            <li><a href="#/Accounts/?v=search">Search Accounts</a></li>
+                    </ul>                    
+                    <ul class="nav" data-url-match="#/Catalog/" data-left-Menu="#/Catalog/">
+                            <li><a href="#/Catalog/?v=new">New Product</a></li>
+                            <li><a href="#/Catalog/?v=search">Search Products</a></li>
+                            <li><a href="#/Catalog/?v=ptypes">Product Types</a></li>
+                            <li><a href="#/Catalog/?v=features">Features</a></li>
+                            <li><a href="#/Catalog/?v=attributes">Attributes</a></li>
+                            <li><a href="#/Catalog/?v=pricing">Pricing Rules</a></li>
+                    </ul>                        
+                </div>
+            </div>
+        </div>                
+        <div class="row">
+            <div class="span12">
+            <!--Body content-->
+        
+    	       <div ng-view></div>
+            </div>
+        </div>
+    </div>    
+    
+    <div>
+        <div id="modalLogin" class="modal hide fade">
+            <div data-ng-include="'views/login.html'" ng-controller="Login"></div>
+        </div>
+    </div>
+    
+    <div ng-show="loading">
+    <span>Loading...</span>
+    </div>
+    
+    <div data-ng-controller="ServiceStatus">
+        <div data-ng-show="serviceCall.active()" id="loadingBackground">
+                <div id="loadingContent">
+                            <div id="loadingSpinner"></div>
+                  </div>
+        </div>    
+    </div>
+    </body>
+</html>

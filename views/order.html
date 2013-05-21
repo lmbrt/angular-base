@@ -1,0 +1,206 @@
+<!-- order view -->
+<div data-ng-show="order.OrderHeaderID > 0">
+	   <div class="row">
+	     <div class="span12">
+	       <ul class="breadcrumb">
+		 <li><a href="#">Home</a> <span class="divider">/</span></li>
+		 <li><button class="btn-link" data-ng-click="switchView('search')" data-tooltip="Click to return to search screen">Order Search</button> <span class="divider">/</span></li>
+		 <li><button class="btn-link" data-ng-click="switchView('edit.summary')">Order #{{order.OrderHeaderID}}</button></li>
+	       </ul>
+	      </div>
+	   </div>	 
+	  <div ng-show="view.edit.summary">
+	   <div class="row">
+	      <div class="span12">
+		<div class="row">
+		  <div class="span12">
+		    <ul class="nav nav-tabs">
+		     <li ng-class="{active:view.edit.summary.tabs.summary||!view.edit.summary.tabs}"><a ng-click="switchView('edit.summary.tabs.summary')">Summary</a></li>
+		     <li ng-class="{active:view.edit.summary.tabs.comments}"><a ng-click="switchView('edit.summary.tabs.comments')">Comments</a></li>
+		     <li ng-class="{active:view.edit.summary.tabs.payments}"><a ng-click="switchView('edit.summary.tabs.payments')">Payments</a></li>
+		     <li ng-class="{active:view.edit.summary.tabs.settings}"><a ng-click="switchView('edit.summary.tabs.settings')">Settings</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		
+	       <div class="row tab-content">
+		 <div class="tab-pane active" ng-show="view.edit.summary.tabs.summary||!view.edit.summary.tabs">
+		   <div class="span6">
+		      <h5>Billing</h5>
+		      <address class="well">
+			  <a data-tooltip="Click to change billing address" data-ng-click="switchView('edit.billing')"><strong>{{order.BillToName}}</strong></a><br>
+			  {{order.BillToAddr1}}<br>
+			  <span data-ng-hide="order.BillToAddr2.length == 0">{{order.BillToAddr2}}<br></span>
+			  {{order.BillToCity}}, {{order.BillToStateCd}} {{order.BillToPostalCd}}<br>
+			  <abbr title="Phone">P:</abbr> {{order.BillToPhoneNo}}<br>
+			  <abbr title="Email">E:</abbr> {{order.BillToEmailAddr}}<br>
+		      </address>
+		      
+		   </div>
+		  <div class="span6">
+		      <h5>Shipping</h5>
+		      <address class="well">
+			  <strong>{{order.ShipToName}}</strong><br>
+			  {{order.ShipToAddr1}}<br>
+			  <span data-ng-hide="order.ShipToAddr2.length == 0">{{order.ShipToAddr2}}<br></span>
+			  {{order.ShipToCity}}, {{order.ShipToStateCd}} {{order.ShipToPostalCd}}<br>
+			  <abbr title="Phone">P:</abbr> {{order.ShipToPhoneNo}}<br>
+			  <abbr title="Email">E:</abbr> {{order.ShipToEmailAddr}}<br>
+		      </address>
+		   </div>	 
+		 </div>
+		 <div class="tab-pane active orderSummaryHeader" ng-show="view.edit.summary.tabs.comments" >
+		   <div class="span12">
+		      <table class="table table-striped table-bordered table-hover table-condensed" datatables data-ng-Model="OrderComments">
+			      <thead>
+				      <tr>
+					<th mData="CreateUserIDDesc">User</th>
+					<th mData="CommentDttm">Date</th>
+					<th mData="CommentText">Comment</th>
+					<th mData="CustomerEmailed">Customer Notified</th>
+					<th nobinding="null">&nbsp;</th>
+				      </tr>
+			      </thead>
+			      <tbody>
+				      <tr ng-repeat='comment in OrderComments'>
+					      <td>{{ comment.CreateUserIDDesc }}</td>
+					      <td>{{ comment.CommentDttm | dateFormat}}</td>
+					      <td>{{ comment.CommentText }}</td>
+					      <td>{{ comment.CustomerEmailed }}</td>
+					      <td><button class="btn" data-ng-click="edit(order)">Edit</button></td>
+				      </tr>
+			      </tbody>
+		      </table>		      
+		   </div>	 
+		 </div>		 
+		 <div class="tab-pane active" ng-show="view.edit.summary.tabs.payments">
+		   <div class="span12">
+		      <h5>Payments</h5>
+		      
+		   </div>	 
+		 </div>		 
+		 		 
+		 </div>
+	      </div>
+	   </div>		 
+		 <div class="row">
+		   <div class="span12">
+		      <table class="table table-striped table-bordered table-hover">
+			      <thead>
+				      <tr>
+					<th>Item #</th>
+					<th>Name</th>
+					<th>Quantity</th>
+					<th>Total Amt</th>
+					<th>&nbsp;</th>
+				      </tr>
+			      </thead>
+			      <tbody>
+				      <tr ng-repeat='line in order.OrderLines'>
+					      <td>{{ line.ProductUnitMeasureID }}</td>
+					      <td>{{ line.ProductName }}<br>
+					      <small> {{ line.VariantName }} </small></td>
+					      <td>{{ line.QtyOrdered }}</td>
+					      <td>{{ line.ActualPrice | currency }}</td>
+					      <td><button class="btn" data-ng-click="edit(order)">Edit</button></td>
+				      </tr>
+			      </tbody>
+		      </table>
+		      
+		   </div>
+		 </div>
+		 
+		 <div class="row">
+		   <div class="span3 offset9">
+		     <table class="table">
+			      <tbody>
+				      <tr>
+					<td>Sub total</td>
+					<td>{{order.SubTotalAmt | currency}}</td>
+				      </tr>
+				      <tr>
+					<td>Shipping</td>
+					<td>{{order.ShippingAmt | currency}}</td>
+				      </tr>				
+				      <tr>
+					<td>Tax</td>
+					<td>{{order.SalesTaxAmt | currency}}</td>
+				      </tr>
+				      
+				      <tr>
+					<td>Total Amount</td>
+					<td>{{order.TotalAmt | currency}}</td>
+				      </tr>
+			      </tbody>
+		      </table>
+		     
+		    </div>
+		 </div>
+	     </div>
+	     <div ng-show="view.edit.billing">
+	       <div class="row">
+			<div class="span12"> 
+			  <h4>Select New Billing Address</h4>
+			  
+			  <ul class="thumbnails">
+			    	<li class="span4" data-ng-repeat="contact in accountContacts">
+		      			<address class="well">
+				  		<strong>{{ contact.FullName }}</strong><br>
+						{{contact.Addr1}}<br>
+			  			<span data-ng-hide="isEmpty(contact.Addr2)">{{contact.Addr2}}<br></span>
+			  			{{contact.City}}, {{contact.StateCd}} {{contact.PostalCd}}<br>
+			  			<abbr title="Phone">P:</abbr> {{contact.PhoneNo}}<br>
+			  			<abbr title="Email">E:</abbr> {{contact.EmailAddr}}<br><br>
+						<div class="text-center">
+							<button class="btn btn-inverse">Use This Address</button>
+						</div>
+					</address>
+				</li>
+			  </ul>
+			  <div class="well text-center">
+			  	<button class="btn btn-primary">Add New Address</button>
+			  </div>
+			  
+			   <form class="form-horizontal" name="billingForm" data-server-Validate="errors">
+			     	<div ng:show="billingForm.$serverInvalid" class="validation-summary alert alert-error">
+       				<p>There was an error updating the billing address</p>      
+    			</div>
+				
+				<input type="text" data-input-Field="BillToName" placeholder="Bill To Name" data-ng-model="order.BillToName" data-label="Name">
+				<input type="email" data-input-Field="BillToEmailAddr" placeholder="Bill To Email" data-ng-model="order.BillToEmailAddr" data-label="Email">
+				<input type="email" data-input-Field="BillToPhoneNo" placeholder="Bill To Phone" data-ng-model="order.BillToPhoneNo" data-label="Phone No">
+				<input type="text" data-input-Field="BillToAddr1" placeholder="Address" data-ng-model="order.BillToAddr1" data-label="Address">
+				<input type="text" data-input-Field="BillToAddr2" placeholder="Address" data-ng-model="order.BillToAddr2" >
+			       
+			       	<div class="control-group">
+				   <label class="control-label" for="billToCity">City, State Zip</label>
+    			 <div class="controls">
+				   <input id="BillToCity" type="text" class="input-small" placeholder="City" data-ng-model="order.BillToCity">
+				   <span data-error-Field="BillToCity"></span>
+				   
+				    <select ui-select2 ng-model="order.BillToStateCd" data-placeholder="State" style="width:150px">
+					    <option></option>
+					    <option ng-repeat="state in statelist" value="{{state.StateCd}}">{{state.StateName}}</option>
+				    </select>
+				    <span data-error-Field="BillToStateCd"></span>
+				    
+				   <input id="BillToPostalCd" type="text" class="input-mini" placeholder="Zip" data-ng-model="order.BillToPostalCd">
+				   <span data-error-Field="BillToPostalCd"></span>
+				 </div>
+			       </div>			       
+				 <div class="well text-right">
+			       		<button type="submit" data-ng-click="switchView('edit.summary')" class="btn">Cancel</button>
+					<button type="submit" class="btn" data-ng-click="updateBilling()">Save</button>
+				 </div>
+			   </form>			  	
+			</div>
+	       </div>
+	     </div>
+	     <div class="row">
+	       <div class="span12">
+		 <button class="btn" data-ng-click="back()">Back To Search</button>
+	       </div>
+	     </div>
+	  
+</div>
+

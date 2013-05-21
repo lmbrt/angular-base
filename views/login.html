@@ -1,0 +1,32 @@
+
+<form class="form-login" name="loginForm" novalidate data-ng-submit="login()">
+        <div class="modal-header">
+                   <h3>CLEO Login</h3>
+    </div>
+	            <div class="modal-body">
+<div data-ng-show="invalidUsernamePassword">
+    <span>Invalid username or password</span>
+</div>                
+    <fieldset>
+        <input type="text" required class="input-block-level" placeholder="Username" ng-model="username" name="username">
+        <div ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+            <span ng-show="loginForm.username.$error.required">Username required.</span>
+        </div>
+        <input type="password" required class="input-block-level" placeholder="Password" ng-model="password" name="password">
+        <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+            <span ng-show="loginForm.password.$error.required">Password required.</span>
+        </div>
+        <div ng-show="loginForm.username.$dirty && loginForm.password.$dirty && loginForm.$invalid">
+            <span>Invalid username or password</span>
+        </div>
+    </fieldset>
+     
+    </div>                 
+
+<div class="modal-footer">
+                    <input type="submit" data-ng-click="login()" class="btn btn-primary" value="Login">
+                </div>
+</form>                
+<div ng-show="loggedIn">
+Logged in as: {{ name }}    
+</div>

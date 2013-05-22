@@ -1,0 +1,9 @@
+{  "success": true,
+  "Data": [
+	{ "PaymentStatusID": 1, "PaymentStatusDesc": "Pending Credit" },
+	{ "PaymentStatusID": 2, "PaymentStatusDesc": "Credit Approved" },
+	{ "PaymentStatusID": 3, "PaymentStatusDesc": "Invoiced" },
+	{ "PaymentStatusID": 4, "PaymentStatusDesc": "Paid" },
+	{ "PaymentStatusID": 5, "PaymentStatusDesc": "Failed" }
+   ]
+}

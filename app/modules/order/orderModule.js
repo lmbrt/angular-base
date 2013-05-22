@@ -51,15 +51,16 @@ var fn2OrdersCtrl = BaseCtrl.extend({
   },
   initLookups: function(Lookup)
   {
-    Lookup.query({action:'StateList',LimitProperties:'StateCd,StateName,CountryCode'}).success(angular.bind(this,function(data){
-        this.$scope.statelist = _.filter(data.Data, function(record) { return record.CountryCode.trim() === "US"; });
+    Lookup.query({action:'StateList',LimitProperties:'name,code'}).success(angular.bind(this,function(data){
+        this.$scope.statelist = data.Data;
+        console.log(data.Data);
     }));
     
-    Lookup.query({action:'UserList',LimitProperties:'SysUserID,FullName,UserName'}).success(angular.bind(this,function(data){
+    Lookup.query({action:'UserList',LimitProperties:'UserID,FullName,IsRep'}).success(angular.bind(this,function(data){
         this.$scope.replist = data.Data;
     }));
     
-    Lookup.query({action:'OrderHeaderStatusList'}).success(angular.bind(this,function(data){
+    Lookup.query({action:'OrderStatusList'}).success(angular.bind(this,function(data){
         this.$scope.orderstatuslist = data.Data;
     }));    
     

@@ -84,13 +84,13 @@ var factories = {
                       }
                     };            
                   }
-        
                 }
               }
               
-              return $http({method:"POST", tracker: 'ServiceCall',
-                url: '/Service.ashx/' + params.service + '/' + params.action, 
-                data: params}).success(function(data)
+              var url = '/app/data/' + params.service + '/' + params.action + ".json";
+              url = url.toLowerCase();
+              return $http({method:"GET", tracker: 'ServiceCall',
+                url: url}).success(function(data)
                 {
                     if (webStorage.isSupported && data.success === true)
                     {
@@ -102,12 +102,6 @@ var factories = {
                 });
             }
           };
-          
-          return $resource('/Service.ashx',
-                                  { tracker: 'ServiceCall' }, {
-                                    query: { method: 'POST' }
-                                  }
-                                  );
         })
 };
 

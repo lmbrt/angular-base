@@ -1,0 +1,14 @@
+{ "success": true,
+  "Data": [
+	{ "ProductTypeID": 1, "ProductTypeName": "Diapers" },
+	{ "ProductTypeID": 2, "ProductTypeName": "Pictures" },
+	{ "ProductTypeID": 3, "ProductTypeName": "Pens" },
+	{ "ProductTypeID": 4, "ProductTypeName": "Toothpaste" },
+	{ "ProductTypeID": 5, "ProductTypeName": "Coffee" },
+	{ "ProductTypeID": 6, "ProductTypeName": "Toilet Paper" },
+	{ "ProductTypeID": 7, "ProductTypeName": "Movies" },
+	{ "ProductTypeID": 8, "ProductTypeName": "Paper Towels" },
+	{ "ProductTypeID": 9, "ProductTypeName": "Razors" }
+
+   ]
+}

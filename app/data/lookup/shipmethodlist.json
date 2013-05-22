@@ -1,0 +1,10 @@
+{ "success": true,
+  "Data": [
+	{ "ShipMethodID": 1, "ShipMethodName": "Ground" },
+	{ "ShipMethodID": 2, "ShipMethodName": "Next Day Air" },
+	{ "ShipMethodID": 3, "ShipMethodName": "Second Day Air" },
+	{ "ShipMethodID": 4, "ShipMethodName": "3 Day Select" },
+	{ "ShipMethodID": 5, "ShipMethodName": "Freight" }
+
+   ]
+}

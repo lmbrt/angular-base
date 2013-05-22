@@ -3,7 +3,11 @@
 /**
  * @license HTTP Auth Interceptor Module for AngularJS
  * (c) 2012 Witold Szczerba
- * License: MIT
+ * License: MIT 
+ *  
+ * Modified 2013 by Dustin Lambert 
+ * Added ability to trigger login-required based on the data 
+ * provided 
  */
 (function () {
   'use strict';
@@ -35,9 +39,8 @@
     var interceptor = ['$rootScope', '$q', 'httpBuffer', function($rootScope, $q, httpBuffer) {
       function success(response) {
         
-        if (response.data && response.data.AuthError === true)
+        if (response.data && response.data.AuthError === true && !response.config.ignoreAuthModule)
         {
-          console.log("Auth Error");
           var deferred = $q.defer();
           httpBuffer.append(response.config, deferred);
           $rootScope.$broadcast('event:auth-login:Required');

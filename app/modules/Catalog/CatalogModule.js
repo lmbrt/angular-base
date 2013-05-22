@@ -9,10 +9,12 @@ var fn2CatalogCtrl = BaseCtrl.extend({
 	 }
 });
 
-var catalogModule = angular.module( 'catalog', []).config( [ '$routeProvider', function( $routeProvider ) {
+var modules = modules || {};
+
+modules['catalog'] = angular.module( 'catalog', []).config( [ '$routeProvider', function( $routeProvider ) {
     $routeProvider.when(
 	     	"/Catalog/:action",
-		{ templateUrl: 'views/catalog.html', controller: 'Catalog', reloadOnSearch: false}
+		{ templateUrl: 'app/modules/Catalog/catalog.html', controller: 'Catalog', reloadOnSearch: false}
 	     );    
     
 }]).controller('Catalog', function() {});

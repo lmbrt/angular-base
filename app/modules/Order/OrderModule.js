@@ -1,6 +1,7 @@
 var fn2OrdersCtrl = BaseCtrl.extend({
   defaultView: "search",
   viewPrefix: "search",
+  templateBase: "app/modules/Order",
 	 constructor: function(Lookup, Order, $scope, $http, $route, $routeParams, $location, $rootScope, $timeout, webStorage)
 	 {
 	   // initialize the base constructor... this makes magic happen
@@ -84,6 +85,8 @@ var fn2OrdersCtrl = BaseCtrl.extend({
   },
   doSearch: function()
   {
+    return;
+    
     if (! this.$routeParams.Q)
     {
       return;
@@ -111,6 +114,7 @@ var fn2OrdersCtrl = BaseCtrl.extend({
 var fn2OrderCtrl = BaseCtrl.extend({  
   defaultView: "edit.summary",
   viewPrefix: "edit.",
+  templateBase: "app/modules/Order",
 	 constructor: function(Account, Order, $scope, $http, $route, $routeParams, $location, $rootScope,$timeout, webStorage)
 	 {
 	   // initialize the base constructor... this makes magic happen
@@ -192,57 +196,13 @@ var fn2OrderCtrl = BaseCtrl.extend({
   }
 });
 
+var modules = modules || {};
 
-var orderModule = angular.module( 'order', []).config( [ '$routeProvider', function( $routeProvider ) {
+modules['order'] = angular.module( 'order', []).config( [ '$routeProvider', function( $routeProvider ) {
     $routeProvider.when(
 	     	"/Orders/:action",
-		{ templateUrl: 'views/orders.html', controller: 'Orders', reloadOnSearch: false}
+		{ templateUrl: 'app/modules/Order/orders.html', controller: 'Orders', reloadOnSearch: false}
 	     );    
     
 }]).controller('Orders', fn2OrdersCtrl).controller('Order', fn2OrderCtrl);
 
-orderModule.factory('Account', function($http) {
-  return  {
-      getContacts: function(params)
-      {
-          params.IncludeValidation = false;
-          params.IncludeSI = false;
-          
-          return $http({method:"POST", tracker: 'ServiceCall',
-              url: '/Service.ashx/Account/ContactList', 
-              data: params});
-      },
-      get: function(id)
-      {
-          return $http({method:"POST", tracker: 'ServiceCall',
-              url: '/Service.ashx/Account/Fetch', 
-              data: {AccountID: id }});        
-      }
-  };
-});
-
-
-orderModule.factory('Order', function($http) {
-  return  {
-      query: function(params)
-      {
-          params.IncludeValidation = false;
-          params.IncludeSI = false;
-          return $http({method:"POST", tracker: 'ServiceCall',
-              url: '/Service.ashx/Order/' + params.action, 
-              data: params});
-      },
-      get: function(id)
-      {
-          return $http({method:"POST", tracker: 'ServiceCall',
-              url: '/Service.ashx/Order/Fetch', 
-              data: {OrderHeaderID: id }});        
-      },
-      getComments: function(id)
-      {
-          return $http({method:"POST", tracker: 'ServiceCall',
-              url: '/Service.ashx/Order/FetchOrderComments', 
-              data: {OrderHeaderID: id }});  
-      }
-  };
-});

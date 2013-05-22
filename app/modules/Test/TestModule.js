@@ -140,10 +140,12 @@ var fn2TestCtrl = BaseCtrl.extend({
 	 }
 });
 	   
-var testModule = angular.module( 'test', []).config( [ '$routeProvider', function( $routeProvider ) {
+var modules = modules || {};
+
+modules['test'] = angular.module( 'test', []).config( [ '$routeProvider', function( $routeProvider ) {
     $routeProvider.when(
 	     	"/Test/",
-		{ templateUrl: 'views/test.html', controller: 'Test', reloadOnSearch: false}
+		{ templateUrl: 'app/modules/Test/test.html', controller: 'Test', reloadOnSearch: false}
 	     );
 }]).controller('Test', fn2TestCtrl);
 

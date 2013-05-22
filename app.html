@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="cleoMgr">
+<html lang="en" ng-app="appName">
     <meta charset="utf-8">
-    <title>CLEO</title>
+    <title>Angular App Name</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/ng-grid.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -23,7 +23,6 @@
 			   "js/vendor/lodash.compat.min.js",
 			   "js/vendor/sha256.js",
 			   "js/vendor/spin.min.js",
-			   //"js/vendor/require.js",
 			   "js/vendor/jquery-1.9.1.min.js",
 			   "js/vendor/jquery.dataTables.min.js",
 			   "js/vendor/chosen.jquery.min.js",
@@ -38,14 +37,22 @@
 			   "js/vendor/angular-select2.js",
 			   "js/vendor/promise-tracker.js",
 			   "js/vendor/angular-datatables.js",
-			   "js/services/http-auth-interceptor.js",
-			   "js/BaseCtrl.js",
-			   "js/modules/AccountModule.js",
-			   "js/modules/OrderModule.js",
-			   "js/modules/CatalogModule.js",
-			   "js/modules/TestModule.js",
-			   "js/controllers/OrderController.js",
-			   "js/app.js"
+			   "js/vendor/ui-bootstrap-tpls-0.3.0.min.js",
+			   "app/util.js",
+			   "app/services/http-auth-interceptor.js",
+			   "app/BaseCtrl.js",
+			   "app/filters/dateFormat.js",
+			   "app/services/orderFactory.js",
+			   "app/services/http-request-transform.js",
+			   "app/directives/menuActive.js",
+			   "app/directives/inputField.js",
+			   "app/modules/Account/AccountModule.js",
+			   "app/modules/Order/OrderModule.js",
+			   "app/modules/Catalog/CatalogModule.js",
+			   "app/modules/Test/TestModule.js",
+			   "app/modules/Login/loginModule.js",
+			   "app/controllers/OrderController.js",
+			   "app/app.js"
 			   );
     </script>
         
@@ -70,7 +77,7 @@
             <div class="navbar-inner">
                 <ul class="nav">
                         <li class="dropdown">
-                            <a id="drop1" class="dropdown-toggle brand" data-toggle="dropdown" href="#menu">CLEO<strong class="caret"></strong></a>
+                            <a id="drop1" class="dropdown-toggle brand" data-toggle="dropdown" href="#menu">App<strong class="caret"></strong></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                 <li><a>System</a></li>
                                 <li><a>User Roles</a></li>
@@ -156,13 +163,14 @@
     <div ng-show="loading">
     <span>Loading...</span>
     </div>
-    
-    <div data-ng-controller="ServiceStatus">
-        <div data-ng-show="serviceCall.active()" id="loadingBackground">
+    <!--
+    <div data-ng-controller="ServiceStatus" ng-show="never">
+        <div data-ng-sshow="serviceCall.active()" id="loadingBackground">
                 <div id="loadingContent">
                             <div id="loadingSpinner"></div>
                   </div>
         </div>    
     </div>
+    -->
     </body>
 </html>

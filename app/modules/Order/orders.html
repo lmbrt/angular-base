@@ -2,10 +2,10 @@
 	<div class="span12">	 
 		 <div data-ng-switch data-on="view.root" >
 		 	<div data-ng-switch-when="search">
-			  	<div data-ng-include="'views/ordersearch.html'"></div>
+			  	<div data-ng-include="'app/modules/Order/orderSearch.html'"></div>
 			</div>
 		 	<div data-ng-switch-when="edit">
-		    		<div ng-include="'views/order.html'" ng-controller="Order"> </div>
+		    		<div ng-include="'app/modules/Order/order.html'" ng-controller="Order"> </div>
 			</div>
 		 	<span ng-switch-default>Missing view</span>
 		 </div>

@@ -201,7 +201,7 @@ var modules = modules || {};
 modules['order'] = angular.module( 'order', []).config( [ '$routeProvider', function( $routeProvider ) {
     $routeProvider.when(
 	     	"/Orders/:action",
-		{ templateUrl: 'app/modules/Order/orders.html', controller: 'Orders', reloadOnSearch: false}
+		{ templateUrl: 'app/modules/order/orders.html', controller: 'Orders', reloadOnSearch: false}
 	     );    
     
 }]).controller('Orders', fn2OrdersCtrl).controller('Order', fn2OrderCtrl);

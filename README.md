@@ -18,6 +18,7 @@ angular-base is designed for pluggable modules to self-initialize and
 self-register with angular's routing engine. Each module initializes itself when 
 it is loaded by registering with a global modules array. 
 
+## Example
 
 ```
 	var modules = modules || {};

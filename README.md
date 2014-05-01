@@ -12,13 +12,13 @@ Start a local webserver and point it at the root directory.  Open your browser t
 In the example, only order search and edit order are functional, but both demonstrate the majority of the features.  Note that the order factory only returns one dataset so you'll constantly see the same data.
 
 # Components
-  * Isolated modules
+  * [Isolated modules]
   * Authentication Services that intercept login-expired events and replay 
 requests after successful logins
   * Sub-view routing
   * Base Controller Class
 
-# Isolated modules
+# (Isolated modules)
 
 angular-base is designed for pluggable modules to self-initialize and 
 self-register with angular's routing engine. Each module initializes itself when 

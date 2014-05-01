@@ -119,6 +119,17 @@ Sub-view routing carries quite a bit of crude code.  To handle all sub-view rout
  * **saveState(key,obj):**  Serializes an object to the specified query string key. Useful for keeping view state in browser history.
  * **getstate(key):** Deserializes an object from the specified query string.  Returns empty object if key not present.
 
+### Events
+
+ * **viewParamChange:** Fires when a view has been changed. function(event, chgObj);  chgObj contains all properties that changed in the routeParams since the last view change. chgObj.isViewChange is a bool indicating if a sub-view was changed.  If false, then only query string parameters changed and can be accessed on chgObj.
+ * **viewChanging:**  Fires immediately before a view is changed. function(event, activeView, newView);
+ * **viewChange:** Fires immediately after a view is changed. function(event, newView);
+ * **I_AM_MASTER:**  Fires in response to "findMaster" broadcast. Only sent from top-level controller. function(event, instanceOfTopLevelController);
+
+### Listeners
+
+ * **findMaster:**  The top-level controller will response to this broadcast with a reference to itself.
+
 ### Basic Controller File
 
 ```

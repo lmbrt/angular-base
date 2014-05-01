@@ -94,6 +94,8 @@ Deep nested views are supported as well.  In the order example, you will find so
 
 Both of these are tied to the edit sub-view and can be activated.  Note that the activation is recursive.  First the edit sub-view is intialized and then the summary/billing sub-sub-view is initialized.  There is no reason another level of controllers couldn't be utilized here either.
 
+*Note:* All sub-views within a controller should have the same prefix.  In the example above, both summary and billing must be under the view.edit. sub-view.  
+
 ### Implementation
 
 The basis for implementing sub-views is based on angular's routeParams and the ability to disable reloadOnSearch in the routeProvider.  Basically, a query string parameter drives the activate view.  To switch views, the query string is updated and the controller listens to the $routeUpdate event. Because switching views is driven by changing the URL, all 
@@ -102,6 +104,20 @@ activation always occurs the same way.  This means that all URLs can be sent / p
 # Base Controller Class
 
 Sub-view routing carries quite a bit of crude code.  To handle all sub-view routing, a base controller is provided in the BaseCtrl.js file. 
+
+### Configuration
+
+ * *viewKey:* Query string parameter used to drive sub-views
+ * *defaultView:* Sub-view to be initialized when none are specified
+ * *viewPrefix:* Prefix of the sub-view
+
+### Methods
+
+ * *isActiveView():* Determines if the controller is the owner of the current active sub-view
+ * *processView():* Processes *viewKey* to determine current active sub-view.  If *viewKey* is not present, *defaultView* will be initialized.
+ * *switchView(view):* Switches active view to specified view.
+ * *saveState(key,obj):*  Serializes an object to the specified query string key. Useful for keeping view state in browser history.
+ * *getstate(key):* Deserializes an object from the specified query string.  Returns empty object if key not present.
 
 ### Basic Controller File
 

@@ -24,13 +24,13 @@ angular-base is designed for pluggable modules to self-initialize and
 self-register with angular's routing engine. Each module initializes itself when 
 it is loaded by registering with a global modules array.  
 
-## Structure
+### Structure
 
 All modules are contained in the app/modules/ directory. The goal with this modal
 was to keep all views and controllers isolated in the associate directory to make maintaining 50-100 independent modules simple.
 
 
-## Example
+### Example
 
 ```
 	var modules = modules || {};

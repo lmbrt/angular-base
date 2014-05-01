@@ -107,17 +107,17 @@ Sub-view routing carries quite a bit of crude code.  To handle all sub-view rout
 
 ### Configuration
 
- * *viewKey:* Query string parameter used to drive sub-views
- * *defaultView:* Sub-view to be initialized when none are specified
- * *viewPrefix:* Prefix of the sub-view
+ * **viewKey:** Query string parameter used to drive sub-views
+ * **defaultView:** Sub-view to be initialized when none are specified
+ * **viewPrefix:** Prefix of the sub-view
 
 ### Methods
 
- * *isActiveView():* Determines if the controller is the owner of the current active sub-view
- * *processView():* Processes *viewKey* to determine current active sub-view.  If *viewKey* is not present, *defaultView* will be initialized.
- * *switchView(view):* Switches active view to specified view.
- * *saveState(key,obj):*  Serializes an object to the specified query string key. Useful for keeping view state in browser history.
- * *getstate(key):* Deserializes an object from the specified query string.  Returns empty object if key not present.
+ * **isActiveView():** Determines if the controller is the owner of the current active sub-view
+ * **processView():** Processes *viewKey* to determine current active sub-view.  If *viewKey* is not present, *defaultView* will be initialized.
+ * **switchView(view):** Switches active view to specified view.
+ * **saveState(key,obj):**  Serializes an object to the specified query string key. Useful for keeping view state in browser history.
+ * **getstate(key):** Deserializes an object from the specified query string.  Returns empty object if key not present.
 
 ### Basic Controller File
 

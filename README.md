@@ -126,6 +126,7 @@ var fnAccountController = BaseCtrl.extend({
     // this triggers viewParamChange
     this.computeRouteChanges();
   },
+  // Each time the view is changed, this function is fired
   processViewParamChange: function(event, chgObj)
   {  
     // ignore changes outside our view
@@ -141,6 +142,7 @@ var fnAccountController = BaseCtrl.extend({
         }      
     }
   },
+  // Functions fired when certain subviews are activated
   viewBindings: function()
   {
       return {
